@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>YouTube MP3 Downloader</title>
+		<style>
+			body {
+				font-family: Monospace;
+				margin: 0 auto;
+				max-width: 600px;
+				text-align: center;
+				padding: 1em;
+				padding-top: 10em;
+			}
+			
+			input {
+				margin: 0.5em;
+			}
+			
+			input[type=text] {
+				width: 300px;
+			}
+			.files {
+				margin-top: 5em;
+				margin-bottom: 5em;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>YouTube MP3 Downloader</h2>
+		<form action="/" method="POST">
+			<label>YouTube URL:</label><br>
+			<input name="url" type=text /><br>
+			<input type=submit value="Convert" />
+		</form>
+		{% if message %}
+		<p>{{ message }}</p>
+		{% endif %}
+		<form action="/clear_storage" method="POST">
+			<input type=submit value="Clear Storage" />
+		</form>
+		<div class="files">
+			{% if list_of_files %}
+				{% for key, value in list_of_files.items() %}
+					<p><a href="{{ value }}">{{ key }}</a></p>
+				{% endfor %}
+			{% endif %}
+		</div>
+		<p><a href="https://github.com/mredaoudi/ytd">Source Code</a>
+		<p>Licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v3.0</a></p>
+	</body>
+</html>
